@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "fate-plugins-qa",
+  "description": "Plugins de QA do Formula Certa VCL - Fagron Tech",
+  "owner": {
+    "name": "QA - Formula Certa VCL"
+  },
+  "plugins": [
+    {
+      "name": "fate-cenarios-teste",
+      "description": "Le um work item do Azure DevOps pelo numero e escreve cenarios de teste em BDD no padrao Formula Certa VCL, a Task de Validacao e a estrategia de teste recomendada.",
+      "author": {
+        "name": "QA - Formula Certa VCL"
+      },
+      "category": "productivity",
+      "source": "./plugins/fate-cenarios-teste"
+    }
+  ]
+}
