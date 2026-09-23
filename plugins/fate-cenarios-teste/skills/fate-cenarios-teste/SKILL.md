@@ -74,7 +74,15 @@ Se as ferramentas não estiverem na sessão, **não mande o usuário esperar nem
 
 **1. Reconecte.** A causa mais comum é falha em cache: uma conexão falhou antes e o cliente guardou o resultado, então as sessões seguintes nem tentam — a mensagem é *"Skipping connection (recent failure cached, retries automatically in 15 min)"*. Se a sessão oferecer uma ferramenta de reconectar servidor MCP (no app desktop, `mcp__ccd_connectors__reconnect_session_connector`, precedida de `session_connectors_status` para pegar o nome exato), **use-a**. A reconexão roda no fim do turno e as ferramentas aparecem no turno seguinte. Isso resolve na hora, sem esperar os 15 minutos e sem reabrir nada.
 
-**2. Se a reconexão falhar, aí sim diagnostique.** O guard do plugin exige, nesta ordem: Node 20+, `npx`, Azure CLI, e sessão `az` com conta corporativa. A mensagem de bloqueio diz qual item falhou. O login é do desenvolvedor, nunca seu: `az login --use-device-code --allow-no-subscriptions`, e depois uma sessão nova.
+**2. Se a reconexão falhar, aí sim diagnostique.** O guard do plugin exige, nesta ordem: Node 20+, `npx`, Azure CLI, e sessão `az` com conta corporativa. A mensagem de bloqueio diz qual item falhou.
+
+**Sessão expirada é o caso mais comum, e é normal.** A empresa usa duplo fator e política de reautenticação: de tempos em tempos o login cai, e isso não é defeito nem coisa a contornar. Trate assim:
+
+- Diga em uma linha que a sessão expirou e entregue o comando, sem rodeio:
+  `az login --use-device-code --allow-no-subscriptions`
+- O login é **sempre do usuário**. Nunca execute `az login`, nunca peça código, senha ou token, nunca tente manter a sessão viva por fora (tarefa agendada, script de renovação, credencial guardada). O duplo fator existe de propósito.
+- Quando o usuário disser que entrou, **tente reconectar o servidor MCP** antes de sugerir reabrir o app. Costuma bastar.
+- Enquanto ele não entra, ofereça o modo texto colado em vez de deixá-lo esperando.
 
 **3. Leia o log antes de teorizar.** Fica em `%LOCALAPPDATA%\claude-cli-nodejs\Cache\<cwd>\mcp-logs-<servidor>\`, um `.jsonl` por tentativa. A primeira linha diz o limite de tempo em vigor e a última diz como terminou. É evidência direta, melhor que suposição.
 
