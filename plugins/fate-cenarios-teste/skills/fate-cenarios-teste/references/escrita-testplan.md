@@ -101,6 +101,23 @@ Mapeamento do cenário para os passos:
 
 O título do Test Case é o título do cenário, **sem** o bloco de passos.
 
+## Validado em produção
+
+O procedimento desta página foi executado de verdade em 2026-09-23, na suíte 244042: nove
+Test Cases gravados, conferidos no board. O que a execução ensinou, e que não estava óbvio:
+
+- **A gravação é `update`, não `create`.** O QA costuma criar os Test Cases com título e
+  deixar os passos vazios. Nesse caso você só preenche `Microsoft.VSTS.TCM.Steps`. Criar
+  Test Case novo é o caso menos comum — confirme antes de criar.
+- **`update_batch` grava os vários de uma vez**, mas a resposta traz o work item inteiro de
+  cada um e **estoura o contexto**. Não confie na resposta: grave e depois **confira com uma
+  leitura compacta**, pedindo só `System.Rev` e `Microsoft.VSTS.TCM.Steps` e contando os
+  passos. É mais barato e prova o resultado.
+- **Escrever no campo não mexe em mais nada**: título, estado, responsável, prioridade e o
+  vínculo `Tests` com a US continuam como estavam. Confirmado nos nove.
+- O editor do Azure deixa um resíduo `<div><br></div>` no fim do último resultado esperado
+  quando o passo é digitado à mão. **Não reproduza isso** — é sujeira do editor, não conteúdo.
+
 ## Teste antes do lote
 
 Na primeira vez que escrever numa suíte — ou sempre que mudar algo no formato — **grave um
