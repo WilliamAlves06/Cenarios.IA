@@ -20,11 +20,29 @@ O padrão de escrita não é opinião: cada regra foi medida na base real do pro
 | Task de Validação | `references/task-validacao.md` |
 | Qualquer título (escolha do módulo) | `references/modulos.md` |
 | Grade do Test Plans (Step Action / Expected Result) | `references/grade-testplans.md` |
+| Criar suíte e Test Cases no Test Plans | `references/escrita-testplan.md` |
 | Leitura do work item pelo MCP | `references/ado-mcp.md` |
+
+## Escrita no Azure DevOps
+
+Esta skill **pode** criar a suíte e os Test Cases no Test Plans — e só isso. Nunca sem autorização explícita do usuário, pedida depois de ele ver os cenários na versão final. O procedimento inteiro está em `references/escrita-testplan.md`; carregue-o antes de qualquer gravação.
+
+O fluxo combinado com o usuário, e que não se altera:
+
+1. Ele manda o número da US.
+2. Você entrega o plano de teste com os cenários.
+3. Você **pergunta** se pode escrever no Test Plans ou se os cenários precisam de ajuste.
+4. Se precisar, ele manda as correções e você refaz.
+5. Você **pergunta de novo**, sobre a versão corrigida.
+6. Ele autoriza.
+7. Você cria a suíte e escreve os Test Cases.
+8. **Sempre confirme o plano** — o da iteração da US — antes de criar a suíte.
+
+Nunca pule do passo 2 para o 7. Autorização de uma US não vale para a próxima.
 
 ## O que esta skill NÃO faz
 
-- **Não escreve no Azure DevOps.** Não crie Test Case, não crie Task, não adicione comentário, não altere campo. Mesmo que as ferramentas de escrita do MCP estejam disponíveis na sessão, elas estão fora do escopo desta skill. A entrega é texto para o usuário revisar e colar. Se o usuário pedir explicitamente a criação, diga que esta skill é de leitura e confirme com ele antes de usar qualquer ferramenta de escrita.
+- **Não escreve nada além de suíte e Test Case.** Não altera a US, não cria Task, não adiciona comentário, não mexe em plano, não apaga nada, não toca em suíte de outra US. A Task de Validação continua sendo texto para o usuário colar.
 - **Não inventa.** Campo, tela, mensagem, tabela, parâmetro ou regra que não esteja no work item não entra no cenário.
 - **Não decide se a regra de negócio está certa.** Isso é julgamento humano.
 
