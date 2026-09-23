@@ -42,6 +42,18 @@ O fluxo combinado com o usuário, e que não se altera:
 
 Nunca pule do passo 2 para o 7. Autorização de uma US não vale para a próxima.
 
+### São três autorizações, não uma
+
+Cada escrita tem seu próprio pedido. Autorizar uma **não** autoriza as outras, e o pedido diz sempre o que exatamente vai acontecer:
+
+| Escrita | Pergunte antes |
+|---|---|
+| Criar a suíte e gravar os passos dos Test Cases | quais casos, em qual plano e suíte |
+| Criar as pastas de evidência e gerar os links | quantas pastas, em qual pasta de mês |
+| Escrever a descrição da Task de Validação | qual task, e que vai substituir o conteúdo atual |
+
+Se a Task de Validação **não existir**, criá-la é uma quarta autorização — peça em separado, nunca junto com as outras.
+
 ## O que esta skill NÃO faz
 
 - **Não escreve nada além do que está autorizado**: suíte, Test Cases, pastas de evidência e a descrição da Task de Validação. Não altera a US, não adiciona comentário, não mexe em plano, não apaga nada, não toca em suíte ou pasta de outra US. Criar a Task de Validação, quando ela não existe, exige autorização própria.

@@ -79,6 +79,15 @@ Regras:
 
 O campo é markdown: grave com `format: "Markdown"`.
 
+**O caso comum é a Task já existir com marcadores.** O QA costuma criá-la com os títulos no
+lugar e o texto `Link com as evidencias do teste` em cada bloco de evidência. Quando for assim,
+**troque só os marcadores pelos links** e preserve o resto — não reescreva a descrição inteira,
+não reordene, não mexa em título, estado, Activity nem horas apontadas.
+
+Leia a descrição atual antes de gravar e confira que os títulos batem com os seus Test Cases.
+Se algum título divergir, **pare e pergunte**: divergência aí significa que os cenários mudaram
+depois da criação da task, e sobrescrever apaga a decisão de alguém.
+
 ## Limites
 
 - Não crie a pasta do mês, nem pastas fora de `Evidencias de Teste 📷`.
