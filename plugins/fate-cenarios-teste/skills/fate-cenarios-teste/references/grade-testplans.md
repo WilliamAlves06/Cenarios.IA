@@ -44,12 +44,43 @@ Demais linhas:
 
 ## Como entregar
 
-Como as células de pré-requisitos são multilinha, **não existe colagem em bloco confiável**:
-quem executa cola linha a linha. Então a entrega útil é o **cenário BDD já no formato final**,
-porque cada linha dele é exatamente uma célula.
+Colar o cenário inteiro de uma vez **não funciona**: cada quebra de linha vira uma linha nova
+da grade, o que espatifa os pré-requisitos em várias linhas e joga o `ENTÃO` para a coluna
+errada. Foi exatamente o que aconteceu no Test Case 244044 na primeira tentativa.
 
-Ou seja: **não invente um segundo formato**. Entregue o cenário BDD correto e diga qual linha
-vai para a coluna da direita. O cenário é a grade.
+Por isso, entregue cada Test Case em **três partes separadas e rotuladas**, para o usuário
+saber onde cada pedaço vai:
+
+```
+244044  [Integração Balança Eletrônica] Relação das Balanças: Ocultar o botão Configurações sem a permissão
+
+  (1) PRIMEIRA CÉLULA de Step Action — cole tudo isto em UMA célula só:
+
+Pré-requisitos:
+- Possuir acesso irrestrito à rotina de Pesagem Monitorada;
+- Possuir um usuário com a permissão Balanças: Configurações desabilitada;
+- Possuir uma balança cadastrada no sistema;
+
+  (2) DEMAIS CÉLULAS de Step Action — uma célula por linha:
+
+Contexto: O usuário acessa a relação de balanças da Pesagem Monitorada sem a permissão de configuração.
+DADO que o usuário acesse o sistema sem a permissão Balanças: Configurações
+E acesse Integração > Pesagem monitorada
+QUANDO clicar na opção Balanças
+
+  (3) STEP EXPECTED RESULT — só na linha do QUANDO:
+
+ENTÃO o sistema deve ocultar o botão Configurações na relação de balanças
+```
+
+Diga ao usuário, uma vez por entrega:
+
+- na parte (1), as quebras de linha dentro da célula se fazem com **Shift+Enter**;
+- a parte (3) vai na **coluna da direita**, clicando na célula ao lado do `QUANDO` — não é
+  uma linha nova de ação.
+
+Ou seja: **não invente um segundo formato**. O conteúdo é o cenário BDD; o que muda é só a
+sinalização de onde cada pedaço entra.
 
 Erros que já custaram retrabalho e não devem se repetir:
 
