@@ -70,12 +70,23 @@ Se o usuário só descreveu a demanda sem número, pergunte se existe work item.
 
 As ferramentas do Azure DevOps chegam pelo plugin `fate-azure-devops`, com prefixo `mcp__plugin_fate-azure-devops_fagron-ado-test__`. Confirme os nomes exatos na lista de ferramentas da sessão antes de chamar — não presuma.
 
-Se as ferramentas não estiverem na sessão, ou se a chamada for bloqueada pelo guard do plugin, **não tente contornar**. Mostre ao usuário o que falta e ofereça a alternativa:
+Se as ferramentas não estiverem na sessão, **não mande o usuário esperar nem reabrir antes de tentar reconectar**. Siga esta ordem:
 
-1. O guard exige, nesta ordem: Node 20+, `npx`, Azure CLI, e sessão `az` com conta corporativa `@fagrontech.com.br`. A mensagem de bloqueio diz qual item falhou.
-2. O login é do desenvolvedor, nunca seu: `az login --use-device-code --allow-no-subscriptions`.
-3. Depois de resolver, é preciso **abrir uma nova sessão** — o servidor MCP só sobe no início da sessão.
-4. **Alternativa enquanto isso:** peça ao usuário que cole o conteúdo da US (descrição, critérios de aceite e comentários relevantes). A skill funciona igual a partir do texto colado; só perde a varredura de filhos e anexos.
+**1. Reconecte.** A causa mais comum é falha em cache: uma conexão falhou antes e o cliente guardou o resultado, então as sessões seguintes nem tentam — a mensagem é *"Skipping connection (recent failure cached, retries automatically in 15 min)"*. Se a sessão oferecer uma ferramenta de reconectar servidor MCP (no app desktop, `mcp__ccd_connectors__reconnect_session_connector`, precedida de `session_connectors_status` para pegar o nome exato), **use-a**. A reconexão roda no fim do turno e as ferramentas aparecem no turno seguinte. Isso resolve na hora, sem esperar os 15 minutos e sem reabrir nada.
+
+**2. Se a reconexão falhar, aí sim diagnostique.** O guard do plugin exige, nesta ordem: Node 20+, `npx`, Azure CLI, e sessão `az` com conta corporativa. A mensagem de bloqueio diz qual item falhou. O login é do desenvolvedor, nunca seu: `az login --use-device-code --allow-no-subscriptions`, e depois uma sessão nova.
+
+**3. Leia o log antes de teorizar.** Fica em `%LOCALAPPDATA%\claude-cli-nodejs\Cache\<cwd>\mcp-logs-<servidor>\`, um `.jsonl` por tentativa. A primeira linha diz o limite de tempo em vigor e a última diz como terminou. É evidência direta, melhor que suposição.
+
+**4. Alternativa enquanto isso:** peça ao usuário que cole o conteúdo da US (descrição, critérios de aceite e comentários relevantes). A skill funciona igual a partir do texto colado; só perde a varredura de filhos, anexos e Test Cases já ligados — diga isso na entrega.
+
+### O que não adianta tentar
+
+- **Registrar o servidor no `~/.claude.json` do usuário.** No app desktop, a sessão recebe os servidores MCP do próprio app e ignora os de usuário. Um servidor registrado ali nunca sobe.
+- **Desabilitar um plugin gerenciado pela empresa** em `settings.json`. Se a organização o habilita, a configuração do usuário não vence.
+- **Esperar o cache expirar** quando existe uma ferramenta de reconectar à mão.
+
+O que **adianta**, e já está aplicado nesta máquina: `env.MCP_TIMEOUT` mais alto no `settings.json` do usuário (120000 = 2 minutos), confirmado no log pela linha `Starting connection with timeout of 120000ms`. O padrão de 30 segundos é apertado quando várias sessões sobem seus MCPs ao mesmo tempo com o antivírus no caminho.
 
 ## Etapa 1 — leia tudo, não só o título
 
