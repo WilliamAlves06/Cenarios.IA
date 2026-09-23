@@ -9,7 +9,15 @@ Le um work item do Azure DevOps pelo numero e escreve, no padrao da casa:
 - o Bug, quando houver defeito observado;
 - a estrategia de teste recomendada (massa de dados, ordem, riscos, evidencia).
 
-Somente leitura: o plugin nunca cria nem altera work item no Azure DevOps.
+Com autorizacao explicita, tambem grava no board:
+
+- cria a suite da US no plano de teste da iteracao e preenche os passos dos Test Cases;
+- cria as pastas de evidencia (US-<id>/CT-<id>) na biblioteca do time e gera o link de cada uma;
+- escreve a descricao da Task de Validacao com esses links.
+
+Cada uma dessas tres escritas pede autorizacao propria, sempre depois de voce ver os cenarios
+na versao final. Autorizacao de uma US nao vale para a proxima. Sem autorizacao, o plugin so
+le e entrega texto.
 
 ## Uso
 
@@ -35,6 +43,14 @@ az login --use-device-code --allow-no-subscriptions
 
 Sem isso a skill continua funcionando, mas apenas a partir do conteudo da US
 colado na conversa.
+
+Para criar as pastas de evidencia e gerar os links, e preciso ainda:
+
+4. Acesso de escrita a biblioteca de documentos do site `squadlastjedi` no SharePoint —
+   o mesmo acesso que voce usa para guardar evidencia hoje.
+
+O token do Microsoft Graph sai do mesmo `az login`, sem configuracao extra. Se voce nao tiver
+esse acesso, as demais funcoes continuam valendo; so a etapa de pastas nao roda.
 
 ## Manutencao
 

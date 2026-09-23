@@ -6,7 +6,7 @@ Marketplace de plugins do Claude Code para o QA do Formula Certa VCL (Fagron Tec
 
 | Plugin | O que faz |
 |---|---|
-| `fate-cenarios-teste` | Le um work item do Azure DevOps pelo numero e escreve cenarios de teste em BDD no padrao da casa, a Task de Validacao e a estrategia de teste. Somente leitura. |
+| `fate-cenarios-teste` | Le um work item do Azure DevOps pelo numero e escreve cenarios de teste em BDD no padrao da casa, a Task de Validacao e a estrategia de teste. Com autorizacao explicita, cria a suite e os Test Cases no Test Plans e as pastas de evidencia do time. |
 
 ## Instalacao
 
