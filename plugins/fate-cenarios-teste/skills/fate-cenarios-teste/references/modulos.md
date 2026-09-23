@@ -49,6 +49,17 @@ Gestão de Estoques               Sobre
 
 O `(+)` não faz parte do nome — é só a marca de quando entrou. Escreva `Convênio`, não `(+) Convênio`.
 
+Confirmados em uso pelo QA em 2026-09-23, na suíte 244042 da US 239742:
+
+```
+Usuários                         Conferência de Estoque
+Peso Médio                       Transferências
+```
+
+`Transferências` (plural) e `Transferência` (singular) convivem. O plural é o observado na
+suíte mais recente; o singular tem 10 ocorrências na medição de 2025+. Prefira o plural e
+não corrija cenários antigos.
+
 ## Grafias que a casa escreve errado
 
 Use sempre a forma da esquerda. As contagens são do levantamento de 2026-09-22.
@@ -90,16 +101,40 @@ Enquanto não houver decisão, use a forma canônica e **não corrija** cenário
 
 ## Como escolher o módulo
 
-Nesta ordem:
+**O módulo é a tela onde aquele cenário roda — não um guarda-chuva para a US inteira.**
 
-1. **Rótulo entre colchetes no título da própria US.** Cuidado: se for nome de cliente
-   (`[Pharmapele]`, `[Drogasil]`) ou de projeto, **não é módulo** — siga para o passo 2.
-2. **Area Path do work item.** O último segmento costuma nomear o módulo.
-3. **Tela ou rotina citada na descrição.** "Saídas > Receitas > Clientes" indica `Receitas`.
+Esta é a regra mais importante desta página, e a que mais se erra. Uma US que atravessa
+quatro telas gera cenários com **quatro módulos diferentes**, um por tela. Não force todos
+para o módulo da regra de negócio que originou a demanda.
+
+Exemplo real (US 239742, uma permissão que afeta quatro telas):
+
+```
+Certo:  [Usuários] Perfil do Usuário: Apresentar a nova permissão de configuração das balanças
+        [Integração Balança Eletrônica] Relação das Balanças: Ocultar o botão Configurações sem a permissão
+        [Peso Médio] Relação das Balanças: Ocultar o botão Configurações sem a permissão
+        [Conferência de Estoque] Altera Balança: Ocultar o botão Configurações sem a permissão
+        [Transferências] Altera Balança: Ocultar o botão Configurações sem a permissão
+
+Errado: [Integração Balança Eletrônica] Peso Médio: Ocultar o botão Configurações sem a permissão
+        (empurrou a tela para o lugar da funcionalidade e repetiu o módulo da regra)
+```
+
+A **funcionalidade** (depois do módulo, antes dos dois-pontos) é a janela ou o comando
+concreto daquela tela: `Relação das Balanças`, `Altera Balança`, `Perfil do Usuário`.
+Não é o módulo repetido nem o nome da demanda.
+
+Ordem de decisão do módulo, por cenário:
+
+1. **A tela onde o passo `QUANDO` acontece.** É o critério principal.
+2. **Test Cases já existentes da mesma tela**, para copiar a grafia em uso.
+3. **Area Path do work item.** O último segmento costuma nomear o módulo.
 4. **Campos ModuleFATE / SubmoduleFATE**, quando preenchidos. Confira contra esta lista:
    eles trazem nomes que nem sempre existem aqui.
-5. **Test Cases já existentes da mesma área**, para copiar a grafia em uso.
-6. **Pergunte ao usuário.** Melhor uma pergunta que um módulo inventado.
+5. **Pergunte ao usuário.** Melhor uma pergunta que um módulo inventado.
+
+O **rótulo entre colchetes no título da US** não serve como módulo quando for nome de cliente
+(`[Pharmapele]`, `[Drogasil]`) ou de projeto. Serve só quando nomeia mesmo um módulo.
 
 ## Nunca
 

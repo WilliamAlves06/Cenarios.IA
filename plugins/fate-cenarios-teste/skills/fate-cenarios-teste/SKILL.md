@@ -114,12 +114,19 @@ Cubra, em texto curto:
 Entregue nesta ordem, com cabeçalhos curtos entre as partes:
 
 1. Ficha da demanda (Etapa 2), se ainda não foi confirmada.
-2. Os cenários.
-3. A Task de Validação.
-4. Como testar (Etapa 7).
-5. Lacunas e premissas — o que você assumiu e o que ficou faltando.
+2. Os cenários em BDD.
+3. **A grade pronta para colar** — um bloco por Test Case, colunas separadas por TAB, conforme `references/grade-testplans.md`. A partir de 4 Test Cases, entregue em **arquivo** em vez de despejar na conversa.
+4. A Task de Validação.
+5. Como testar (Etapa 7).
+6. Lacunas e premissas — o que você assumiu e o que ficou faltando.
 
-Cada artefato que vai para o Azure DevOps vai **dentro de um bloco de código sem linguagem**, para o usuário copiar de uma vez. O conteúdo dentro do bloco é texto puro: sem asterisco, crase, cerquilha, tabela, emoji ou numeração automática — os campos do Azure não renderizam markdown. As partes 1, 4 e 5 são conversa com o usuário e podem usar formatação normal.
+O cenário em BDD e a grade são a **mesma coisa em dois formatos**: o BDD é para revisar, a grade é para colar. Entregue os dois sempre, não um ou outro.
+
+Cada artefato que vai para o Azure DevOps vai **dentro de um bloco de código sem linguagem**, para o usuário copiar de uma vez. O conteúdo dentro do bloco é texto puro: sem asterisco, crase, cerquilha, tabela, emoji ou numeração automática — os campos do Azure não renderizam markdown. As partes 1, 5 e 6 são conversa com o usuário e podem usar formatação normal.
+
+### Quando os Test Cases já existem
+
+Se o usuário citar uma suíte, um plano ou um link do Test Plans, **leia a suíte antes de escrever** (`testplan` com `list_cases`) e trabalhe sobre o que está lá: use os IDs e os títulos reais, sem reescrevê-los, e entregue só os passos que faltam. Título já criado é decisão do QA — respeite.
 
 ## Regras invioláveis
 
