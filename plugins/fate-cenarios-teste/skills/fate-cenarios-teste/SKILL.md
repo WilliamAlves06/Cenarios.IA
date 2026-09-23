@@ -1,6 +1,6 @@
 ---
 name: fate-cenarios-teste
-description: Lê um work item do Azure DevOps (org fagrontech) pelo número e escreve cenários de teste em BDD no padrão Formula Certa VCL, a Task de Validação e a estratégia de teste recomendada. Use SEMPRE que o usuário informar um número de US, PBI, work item, bug ou regra de negócio pedindo cenários, casos de teste, test cases, plano de teste, o que testar, como testar, cobertura de teste ou validação — mesmo que não diga skill nem cite o Azure. Use também para escrever Bug no padrão da casa a partir de um defeito observado. Esta skill é somente leitura: nunca cria nem altera work item no Azure DevOps.
+description: Lê um work item do Azure DevOps (org fagrontech) pelo número e escreve cenários de teste em BDD no padrão Formula Certa VCL, a Task de Validação e a estratégia de teste recomendada. Use SEMPRE que o usuário informar um número de US, PBI, work item, bug ou regra de negócio pedindo cenários, casos de teste, test cases, plano de teste, o que testar, como testar, cobertura de teste ou validação — mesmo que não diga skill nem cite o Azure. Use também para escrever Bug no padrão da casa a partir de um defeito observado. Com autorização explícita do usuário, cria a suíte e os Test Cases no Test Plans e as pastas de evidência do time; sem autorização, apenas lê e entrega texto.
 ---
 
 # Cenários de Teste — Formula Certa VCL
@@ -21,6 +21,7 @@ O padrão de escrita não é opinião: cada regra foi medida na base real do pro
 | Qualquer título (escolha do módulo) | `references/modulos.md` |
 | Grade do Test Plans (Step Action / Expected Result) | `references/grade-testplans.md` |
 | Criar suíte e Test Cases no Test Plans | `references/escrita-testplan.md` |
+| Pastas de evidência e links da Task de Validação | `references/evidencias.md` |
 | Leitura do work item pelo MCP | `references/ado-mcp.md` |
 
 ## Escrita no Azure DevOps
@@ -37,12 +38,13 @@ O fluxo combinado com o usuário, e que não se altera:
 6. Ele autoriza.
 7. Você cria a suíte e escreve os Test Cases.
 8. **Sempre confirme o plano** — o da iteração da US — antes de criar a suíte.
+9. Criados os casos, você cria as **pastas de evidência** (`US-<id>/CT-<id>`) na biblioteca do time, gera o link de cada uma e monta a descrição da **Task de Validação** com esses links. Procedimento em `references/evidencias.md`.
 
 Nunca pule do passo 2 para o 7. Autorização de uma US não vale para a próxima.
 
 ## O que esta skill NÃO faz
 
-- **Não escreve nada além de suíte e Test Case.** Não altera a US, não cria Task, não adiciona comentário, não mexe em plano, não apaga nada, não toca em suíte de outra US. A Task de Validação continua sendo texto para o usuário colar.
+- **Não escreve nada além do que está autorizado**: suíte, Test Cases, pastas de evidência e a descrição da Task de Validação. Não altera a US, não adiciona comentário, não mexe em plano, não apaga nada, não toca em suíte ou pasta de outra US. Criar a Task de Validação, quando ela não existe, exige autorização própria.
 - **Não inventa.** Campo, tela, mensagem, tabela, parâmetro ou regra que não esteja no work item não entra no cenário.
 - **Não decide se a regra de negócio está certa.** Isso é julgamento humano.
 
@@ -94,7 +96,7 @@ Se houver lacuna que muda o cenário, pergunte agora. Se as lacunas forem perif�
 
 Carregue `references/modulos.md`. O erro mais comum: a Regra de Negócio traz um campo "Módulo:" que na verdade registra o **executável** (`FCReceitas.exe - 6.0.1140`). Isso não é módulo — o módulo é `Receitas`.
 
-Ordem de decisão: rótulo entre colchetes no título da US, depois Area Path, depois a tela citada na descrição, depois pergunte. Nunca invente sigla.
+**O módulo é a tela onde aquele cenário roda**, não um guarda-chuva para a US inteira: uma US que atravessa quatro telas gera quatro módulos diferentes. O rótulo entre colchetes no título da US não serve quando for nome de cliente ou de projeto. Nunca invente sigla — a ordem completa de decisão está no arquivo.
 
 ## Etapa 4 — quantos cenários
 
