@@ -44,7 +44,11 @@ numere, não acrescente comentário.
 
 **T6.** O campo é markdown: grave com `format: "Markdown"`.
 
-**T7.** Quando a task já existir com os marcadores, **troque só os marcadores pelos links**.
+**T7.** **Nunca** agrupe os títulos numa lista com uma evidência só no fim. A evidência é
+**por Test Case** — é isso que permite rastrear qual print prova qual cenário. Este é o erro
+mais comum nesta task.
+
+**T8.** Quando a task já existir com os marcadores, **troque só os marcadores pelos links**.
 Não reescreva a descrição inteira. O procedimento completo está em `references/evidencias.md`.
 
 ## Lista de conferência

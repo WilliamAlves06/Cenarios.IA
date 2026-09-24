@@ -62,3 +62,23 @@ A fonte de verdade desses padroes e o repositorio `FormulaCertaVCL-Test-Plans`
 qualquer uma dessas fontes, atualize as referencias aqui e suba a versao em
 `.claude-plugin/plugin.json` — senao o plugin passa a ensinar uma regra que o
 sistema ja abandonou.
+
+## Nao edite a copia instalada
+
+Se voce quiser mudar alguma regra, mude **neste repositorio** e publique. Editar os arquivos
+dentro de `~/.claude/plugins/marketplaces/fate-plugins-qa/` parece funcionar na hora, mas
+**quebra a atualizacao automatica em silencio**: o `git pull` do marketplace falha porque a
+copia local esta suja, e o plugin congela na versao do dia em que foi editado — sem nenhum
+aviso.
+
+Foi o que aconteceu em 2026-09-23: uma edicao direta no `task-validacao.md` instalado deixou
+o plugin travado na 1.0.0 por dois dias, enquanto o repositorio ja estava na 2.4.1.
+
+Para conferir se a sua copia esta travada:
+
+```
+git -C "%USERPROFILE%\.claude\plugins\marketplacesate-plugins-qa" status --short
+```
+
+Qualquer coisa listada ali e uma edicao local que precisa ser descartada com
+`git checkout -- <arquivo>` para o auto-update voltar a funcionar.

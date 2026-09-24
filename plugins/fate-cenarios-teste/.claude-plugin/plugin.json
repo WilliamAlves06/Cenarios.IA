@@ -2,7 +2,7 @@
   "name": "fate-cenarios-teste",
   "displayName": "Cenarios de Teste - Formula Certa VCL",
   "description": "Le um work item do Azure DevOps pelo numero e escreve cenarios de teste em BDD no padrao Formula Certa VCL, a Task de Validacao e a estrategia de teste recomendada. Cria a suite e os Test Cases no Test Plans apenas com autorizacao explicita do usuario.",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "author": {
     "name": "QA - Formula Certa VCL"
   },
