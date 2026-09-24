@@ -58,6 +58,22 @@ qualquer regra geral desta página.
 - `name`: `<id da US> : <título da US>`, exatamente. Exemplo observado:
   `239742 : [Pharmapele] - Permissão de usuário para configuração de balanças`.
 
+### Campos do Test Case
+
+| Campo | Valor |
+|---|---|
+| `System.AreaPath` | o mesmo Area Path da US |
+| `System.IterationPath` | **o nível de MÊS** da iteração da US, não o da sprint |
+| `Microsoft.VSTS.Common.Priority` | `2` |
+| `System.State` | `Design` (padrão ao criar) |
+
+A iteração é o ponto que mais se erra. A US 242103 está em
+`...\Versão Setembro-2026\Versão Setembro-2026 - S4`, mas o Test Case vai em
+`...\Versão Setembro-2026` — **corte o último nível**. Modelo real: Test Case 244247.
+
+É a mesma regra da pasta de evidência: o Test Case e a evidência vivem no mês, porque
+atravessam a release; só a **suíte** mora no plano da sprint. Não confunda os dois.
+
 **Cada Test Case** — dois passos, nesta ordem:
 
 1. `testplan_test_case_write`, ação `create`, com `project`, `title` e `testsWorkItemId`
